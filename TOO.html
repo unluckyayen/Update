@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discuss Section</title>
+    <link rel="stylesheet" href="too.css">
+</head>
+<body>
+<!-- contact section -->
+<section id="contact" class="contact">
+
+    <div class="container">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.939771757205!2d114.00534207437708!3d4.422324095551874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x321f4ee49d4c89cf%3A0xb84aee1efd20d70!2sKolej%20Vokasional%
+20Miri!5e0!3m2!1sen!2smy!4v1700450380460!5m2!1sen!2smy"class='map' allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <h1>Hubungi Kami</h1>
+        <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="ea610dda-7908-40a5-a829-2333c00b359c">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Pesan:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            <button type="submit" name="send">Kirim Pesan</button>
+        </form>
+    </div>
+</section>
+    <!----discuss section----->
+<div class="discuss-section">
+    <h2>Join the Discussion</h2>
+    
+    <form id="discuss-form">
+        <textarea id="comment" placeholder="Write your comment..." required></textarea>
+        <input type="text" id="username" placeholder="Your Name" required>
+        <button type="submit">Post Comment</button>
+    </form>
+
+    <div id="comments-container">
+        <h3>Discussion:</h3>
+        <ul id="comments-list">
+            <!-- Comments will be added here dynamically -->
+        </ul>
+    </div>
+</div>
+<script type="module" src="TOO.js"></script>
+
+</body>
+</html>

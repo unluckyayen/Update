@@ -1,0 +1,52 @@
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+<script>
+   const firebaseConfig = {
+            apiKey: "AIzaSyDNUXxCo2iQYvmNbD9pOvr8AFkhfUAQKjQ",
+            authDomain: "contact-5c652.firebaseapp.com",
+            databaseURL: "https://contact-5c652-default-rtdb.firebaseio.com",
+            projectId: "contact-5c652",
+            storageBucket: "contact-5c652.appspot.com",
+            messagingSenderId: "276420086541",
+            appId: "1:276420086541:web:fc044087e0d44040233e44"
+        };
+
+        // Inisialisasi Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        document.getElementById('contactForm').addEventListener('submit', submitForm);
+
+        function submitForm(e) {
+            e.preventDefault();
+            
+            const name = getElementVal("name");
+            const email = getElementVal("email"); // pastikkan id yang ada dalam TOO.html betul atau sama dengan javascript 
+            const message = getElementVal("message");
+
+             // untuk menyimpan data ke realtime database
+             saveMessages(name, email, message);
+            //untuk enable notif
+            document.querySelector(".alert").style.display = "block";
+            //masa notif hilang
+            setTimeout(() => {
+                document.querySelector(".alert").style.display = "none";
+            },3000);
+
+            // untuk reset borang selepas penghantaran
+            document.getElementById('contactForm').reset();
+        }
+
+        const getElementVal = (id) => {
+            return document.getElementById(id).value;
+        }
+
+        function saveMessages(name, email, message) {
+            const contactFormDB = database.ref('contactForm');
+            contactFormDB.push({
+                name: name,
+                email: email,
+                message: message
+            });
+        }
+</script>

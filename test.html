@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="too.css">
+    <title>test</title>
+</head>
+<body>
+     <!----contact start----->
+    <section id="contact" class="contact">
+        <div class="alert">You Message Sent Successfully</div>
+        <div class="container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3977.939771757205!2d114.00534207437708!3d4.422324095551874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x321f4ee49d4c89cf%3A0xb84aee1efd20d70!2sKolej%20Vokasional%
+            20Miri!5e0!3m2!1sen!2smy!4v1700450380460!5m2!1sen!2smy"class='map' allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <h1>Hubungi Kami</h1>
+            <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+                <input type="hidden" name="access_key" value="ea610dda-7908-40a5-a829-2333c00b359c">
+                <input type="text" id="name" name="name" placeholder="Name" required>
+                <input type="email" id="email" name="email" placeholder="Emai" required>
+                <textarea id="message" name="message" rows="4" placeholder="Message" required></textarea>
+    
+                <button type="submit" name="send">Kirim Pesan</button>
+            </form>
+        </div>
+    </section>
+</body>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+<script>
+   const firebaseConfig = {
+            apiKey: "AIzaSyDNUXxCo2iQYvmNbD9pOvr8AFkhfUAQKjQ",
+            authDomain: "contact-5c652.firebaseapp.com",
+            databaseURL: "https://contact-5c652-default-rtdb.firebaseio.com",
+            projectId: "contact-5c652",
+            storageBucket: "contact-5c652.appspot.com",
+            messagingSenderId: "276420086541",
+            appId: "1:276420086541:web:fc044087e0d44040233e44"
+        };
+
+        // Inisialisasi Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        document.getElementById('contactForm').addEventListener('submit', submitForm);
+
+        function submitForm(e) {
+            e.preventDefault();
+            
+            const name = getElementVal("name");
+            const email = getElementVal("email"); // pastikkan id yang ada dalam TOO.html betul atau sama dengan javascript 
+            const message = getElementVal("message");
+
+             // untuk menyimpan data ke realtime database
+             saveMessages(name, email, message);
+            //untuk enable notif
+            document.querySelector(".alert").style.display = "block";
+            //masa notif hilang
+            setTimeout(() => {
+                document.querySelector(".alert").style.display = "none";
+            },3000);
+
+            // untuk reset borang selepas penghantaran
+            document.getElementById('contactForm').reset();
+        }
+
+        const getElementVal = (id) => {
+            return document.getElementById(id).value;
+        }
+
+        function saveMessages(name, email, message) {
+            const contactFormDB = database.ref('contactForm');
+            contactFormDB.push({
+                name: name,
+                email: email,
+                message: message
+            });
+        }
+</script>
+</html>
